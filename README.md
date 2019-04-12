@@ -1,8 +1,8 @@
 This is a slightly derived version of the CGI C++ Library.
-It is tested with Ubuntu 14.04 (using Travis CI), 16.04 (the Development System), 64 bit using CMake.
+It is tested with Ubuntu 16.04 (using Travis CI), 64 bit using CMake.
 
-The Build status with Ubuntu 14.04 and Boost 1.58 is
-[![Build Status](https://travis-ci.org/leutloff/cgi.png)](https://travis-ci.org/leutloff/cgi)
+The Build status with Ubuntu 16.04 and Boost 1.70.0 is
+[![Build Status](https://travis-ci.org/aldot/cgi.png)](https://travis-ci.org/aldot/cgi)
 
 
 This is the original README.txt:
@@ -44,13 +44,12 @@ The tests aren't exhaustive - this library is still under development.
 
 Currently tested on
 
-- Ubuntu 8.04 desktop 32bit
-- Ubuntu 9.10 desktop 32bit
-- Ubuntu 8.04 server 64bit
+- Ubuntu desktop 32bit
+- Ubuntu server 64bit
 - MSVC 2008 Windows XP
 - MSVC 2008 Windows 7
 
-FastCGI stuff works on linux and Windows under Apache 2.2 and mod_fcgid. Currently external fastcgi servers (eg. on mod_fastcgi) are only supported on linux.
+FastCGI stuff works on linux and Windows under Apache 2.4 and mod_fcgid. Currently external fastcgi servers (eg. on mod_fastcgi) are only supported on linux.
 
 Bleeding edge code is at https://svn.boost.org/trac/boost/browser/sandbox/SOC/2007/cgi/trunk
 
