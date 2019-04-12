@@ -1,7 +1,7 @@
 This is a slightly derived version of the CGI C++ Library.
 It is tested with Ubuntu 16.04 (using Travis CI), 64 bit using CMake.
 
-The Build status with Ubuntu 16.04 and Boost 1.69.0 is
+The Build status with Ubuntu 16.04 and Boost 1.67.0 is
 [![Build Status](https://travis-ci.org/aldot/cgi.png)](https://travis-ci.org/aldot/cgi)
 
 
