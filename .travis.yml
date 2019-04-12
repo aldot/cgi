@@ -9,9 +9,9 @@ before_install:
     # Install CMake
     - sudo apt-get --purge remove cmake -y
     - export OPTDIR=/home/travis
-    - export CMAKEDIR=/home/travis/cmake-3.5
+    - export CMAKEDIR=/home/travis/cmake-3.14
     - mkdir -p "$OPTDIR" "$CMAKEDIR"
-    - (cd "$OPTDIR" && curl -LO https://cmake.org/files/v3.5/cmake-3.5.2-Linux-x86_64.sh && /bin/sh ./cmake-*-Linux-x86_64.sh --prefix=$CMAKEDIR --skip-license && cd -)
+    - (cd "$OPTDIR" && curl -LO https://cmake.org/files/v3.14/cmake-3.14.2-Linux-x86_64.sh && /bin/sh ./cmake-*-Linux-x86_64.sh --prefix=$CMAKEDIR --skip-license && cd -)
     - sudo ln -sf $CMAKEDIR/bin/cmake  /usr/local/bin/cmake
     - sudo ln -sf $CMAKEDIR/bin/ccmake /usr/local/bin/ccmake
     - sudo ln -sf $CMAKEDIR/bin/cpack  /usr/local/bin/cpack
