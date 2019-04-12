@@ -12,6 +12,8 @@ before_install:
     - export CMAKEDIR=/home/travis/cmake-3.14
     - mkdir -p "$OPTDIR" "$CMAKEDIR"
     - (cd "$OPTDIR" && curl -LO https://cmake.org/files/v3.14/cmake-3.14.2-Linux-x86_64.sh && /bin/sh ./cmake-*-Linux-x86_64.sh --prefix=$CMAKEDIR --skip-license && cd -)
+    - sudo rm -rf /usr/local/
+    - sudo mkdir -p /usr/local/bin
     - sudo ln -sf $CMAKEDIR/bin/cmake  /usr/local/bin/cmake
     - sudo ln -sf $CMAKEDIR/bin/ccmake /usr/local/bin/ccmake
     - sudo ln -sf $CMAKEDIR/bin/cpack  /usr/local/bin/cpack
@@ -22,21 +24,23 @@ before_install:
     - export boost_version_str=1_69_0
     - export boost_dir=boost_${boost_version_str}
     - echo "boost_dir ${boost_dir}; curl -LO https://sourceforge.net/projects/boost/files/boost/${boost_version_no}/boost_${boost_version_str}.tar.bz2"
-    # Try download twice - it is failing sometimes... 
-    - curl -LO https://sourceforge.net/projects/boost/files/boost/${boost_version_no}/boost_${boost_version_str}.tar.bz2 || true
+    # Try download twice - it is failing sometimes...
+    - test -f ${boost_dir}.tar.bz2 || curl -LO https://sourceforge.net/projects/boost/files/boost/${boost_version_no}/boost_${boost_version_str}.tar.bz2 || true
     - ls -al *.tar.bz2 || true
     - test -f ${boost_dir}.tar.bz2 || curl -LO https://sourceforge.net/projects/boost/files/boost/${boost_version_no}/boost_${boost_version_str}.tar.bz2
     - ls -al *.tar.bz2 || true
-    - tar --bzip2 -xf ${boost_dir}.tar.bz2
+    - tar -xjf ${boost_dir}.tar.bz2
     #- rm ${boost_dir}.tar.bz2
+    - owd=$(pwd)
     - cd ${boost_dir}
     #- ./bootstrap.sh --show-libraries
     - ./bootstrap.sh --with-libraries=chrono,date_time,exception,filesystem,iostreams,log,locale,program_options,system,test,thread
     - sudo ./b2 -j 4 link=shared runtime-link=shared install -d0 --prefix=/usr/local
-    - cd ..
+    - cd $owd
     #- rm -rf ${boost_dir}
-    - sudo ldconfig
-    - find /usr/lib -name 'libboost*' -print  
+    - sudo ldconfig -v
+    - find /usr/lib -name 'libboost*' -print
+    - find /usr/local/lib -name 'libboost*' -print
 before_script:
 #  ### use the PPA ppa:ukplc-team/testing to get Boost 1.49 in Precise
 #  - sudo add-apt-repository ppa:ukplc-team/testing -y
